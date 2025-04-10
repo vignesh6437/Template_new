@@ -1,0 +1,166 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<link rel="shortcut icon" type="image/png" href="images/favicon.png">
+<link href="~/Scripts/js/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+<link href="~/Scripts/js/vendor/lightgallery/css/lightgallery.min.css" rel="stylesheet">
+<link href="~/Scripts/js/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="profile card card-body px-3 pt-3 pb-0">
+            <div class="profile-head">
+                <div class="photo-content">
+                    <div class="cover-photo rounded"></div>
+                </div>
+                <div class="profile-info">
+                    <div class="profile-photo">
+                        <!-- Clickable Profile Image -->
+                        <label for="file-input" class="profile-image-wrapper">
+                            <img id="profileImage" src="images/profile/profile.png" class="img-fluid rounded-circle" alt="">
+                            <div class="upload-icon">
+                                <img src="images/upload-icon.png" alt="Upload">
+                                <input id="hdemage" type="hidden" />
+                                <input id="hdmailautoid" type="hidden" />
+                                <input id="hduserautoid" type="hidden" />
+                            </div>
+                        </label>
+                        <input type="file" id="file-input"  accept="image/*" onchange="previewImage(event)">
+                    </div>
+                    <div class="profile-details">
+                        <div class="profile-name px-3 pt-2">
+                            <h4 class="text-primary mb-0" id="txtusername" style="text-transform:uppercase"></h4>
+                            <p>UX / UI Designer</p>
+                        </div>
+                        <div class="profile-email px-2 pt-2">
+                            <h4 class="text-muted mb-0" id="txtemailid"></h4>
+                            <p>Email</p>
+                        </div>
+                        <div class="dropdown ms-auto">
+                            <a href="#" class="btn btn-primary light sharp" data-bs-toggle="dropdown" aria-expanded="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewbox="0 0 24 24">
+                                    <g fill="none" fill-rule="evenodd">
+                                        <rect width="24" height="24"></rect>
+                                        <circle fill="#000000" cx="5" cy="12" r="2"></circle>
+                                        <circle fill="#000000" cx="12" cy="12" r="2"></circle>
+                                        <circle fill="#000000" cx="19" cy="12" r="2"></circle>
+                                    </g>
+                                </svg>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li class="dropdown-item" data-bs-toggle="modal" data-bs-target=".bd-example-modal-sm">
+                                    <i class="fa fa-user-circle text-primary me-2"></i> Update Profile
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Update Profile Modal -->
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-12 col-md-12">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-control" id="txtusernamemodel" placeholder="Enter Username">
+                </div>
+                <br />
+                <div class="mb-12 col-md-12">
+                    <label class="form-label">Password</label>
+                    <input type="text" class="form-control" id="txtpassword" placeholder="Enter Password">
+                </div>
+                <br />
+                <div class="mb-12 col-md-12">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="txtconpassword" placeholder="Enter Confirm Password">
+                </div>
+                <div class="mb-12 col-md-12">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" id="txtemailidmodel" placeholder="Enter Email">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnsubmit">Save changes</button>
+                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/js/vendor/global/global.min.js"></script>
+<script src="~/fuctionscripts/UpdateProfile.js"></script>
+
+<style>
+    .profile-photo {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        margin: auto;
+    }
+
+    .profile-image-wrapper {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    .profile-photo img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #ddd;
+    }
+
+    .upload-icon {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        background-color: white;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    }
+
+        .upload-icon img {
+            width: 18px;
+            height: 18px;
+        }
+
+    #file-input {
+        display: none;
+    }
+</style>
+
+<script>
+    function previewImage(event) {
+        const input = event.target;
+        const reader = new FileReader();
+
+        reader.onload = function () {
+            const profileImage = document.getElementById("profileImage");
+            profileImage.src = reader.result;
+        };
+
+        if (input.files && input.files[0]) {
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

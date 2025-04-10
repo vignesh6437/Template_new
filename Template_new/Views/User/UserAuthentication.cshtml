@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "UserAuthentication";
+}
+
+
+<link rel="shortcut icon" type="image/png" href="images/favicon.png">
+<link rel="stylesheet" href="~/Scripts/js/vendor/select2/css/select2.min.css">
+<link href="~/Scripts/js/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+<link href="~/Content/css/style.css" rel="stylesheet">
+<link href="~/Scripts/js/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<!-- Your form and other content go here -->
+<div class="row">
+    <div class="col-xl-6 col-lg-12" style="width: 100%;">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">User Autentication</h3>
+            </div>
+            <div class="card-body">
+                <div class="basic-form">
+                    <form>
+                        <div class="row">
+                            <div class="mb-3 col-md-3">
+                                <label class="mb-4 select2-label" for="username">
+                                    Username <br>
+
+                                    <select class="select2-with-label-single js-states d-block" id="username">
+                                    </select>
+                                </label>
+                                <input type="hidden" id="hdautoid">
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="ckbox" for="SelectAllScreens">Select All</label>
+                                <div class="clearfix">
+                                    <input type="checkbox" id="txtSelectAllScreens" name="txtSelectAllScreens" class="" maxlength="50" tabindex="2">
+                                </div>
+                            </div>
+
+                           
+
+                            <!-- Add other form fields as needed -->
+                        </div>
+                        
+                        <div style=" text-align: center !important; margin-top: 50px; margin-bottom: 20px;">
+                            <button type="button" id="btnsubmit" class="btn btn-success"><span id="actiontype">Save</span></button>
+                            <button type="button" id="btnclear" class="btn btn-danger">Clear</button>
+                        </div>
+                    </form>
+                </div>
+
+
+
+
+            </div>
+
+            <div class="card-header">
+                <h4 class="card-title">Screen Details</h4>
+            </div>
+            <div class="card-body">
+                @*<div class="table-responsive" id="dynamic-table_wrapper">*@
+                <div style="overflow-x: auto; width: 102%; margin-left: -1%;">
+                    <table id="dynamic-tableUpload" class="table checkupload" style="border-bottom: 1px solid gainsboro; text-align:center">
+                        <thead style="background-color: #a68dd6;">
+                            <tr>
+                                <th style="color: white;">Select</th>
+                                <th style="color: white;">Screen Id</th>
+                                <th style="color: white;">Screen Name</th>
+                                <th style="color: white;">Function Name</th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="tbody" class="checkuploadbody" style="text-align:center;"></tbody>
+                    </table>
+                </div>
+                @*</div>*@
+            </div>
+
+        </div>
+    </div>
+</div>
+<style>
+    table, th {
+        font-size: 13px !important;
+    }
+
+    table, td {
+        font-size: 12px !important;
+    }
+
+    thead th {
+        color: white;
+    }
+</style>
+
+<script src="~/Scripts/js/vendor/global/global.min.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+<script src="~/fuctionscripts/UserAuthentication.js"></script>
+
+
+
+
+
+

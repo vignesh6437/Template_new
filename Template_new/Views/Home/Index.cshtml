@@ -1,0 +1,720 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="shortcut icon" type="image/png" href="images/favicon.png">
+<link rel="stylesheet" href="~/Scripts/js/vendor/select2/css/select2.min.css">
+<link href="~/Scripts/js/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+<link href="~/Content/css/style.css" rel="stylesheet">
+<link href="~/Scripts/js/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<!-- Your form and other content go here -->
+<div class="row">
+    <div class="col-lg-12">
+        <input type="hidden" id="hdname"/>
+        <div class="profile card card-body px-3 pt-3 pb-0" style=" margin-top: 0%;">
+            <div class="profile-head">
+                <input type="hidden" id="hdautoid">
+                <div class="profile-info">
+
+                    <div class="profile-details" style=" margin-top: -1%;">
+
+                        <p id="daily-proverb" style="font-size: 18px; font-weight: bold;"></p>
+
+
+                        <div class="dropdown ms-auto">
+                            <a href="#" class="btn btn-primary light sharp" data-bs-toggle="dropdown" aria-expanded="true" style="margin-top: 23%;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewbox="0 0 24 24">
+                                    <g fill="none" fill-rule="evenodd">
+                                        <rect width="24" height="24"></rect>
+                                        <circle fill="#000000" cx="5" cy="12" r="2"></circle>
+                                        <circle fill="#000000" cx="12" cy="12" r="2"></circle>
+                                        <circle fill="#000000" cx="19" cy="12" r="2"></circle>
+                                    </g>
+                                </svg>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li class="dropdown-item" data-bs-toggle="modal" data-bs-target=".bd-example-modal-sm">
+                                    <i class="fa fa-user-circle text-primary me-2"></i> Weather
+                                </li>
+                                <li class="dropdown-item" data-bs-toggle="modal" data-bs-target=".bd-example-modal-sm1">
+                                    <i class="fa fa-user-circle text-primary me-2"></i> News
+                                </li>
+                                <li class="dropdown-item" data-bs-toggle="modal" data-bs-target=".bd-example-modal-smchat">
+                                    <i class="fa fa-user-circle text-primary me-2"></i> Chat
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card">
+                            @*<div class="card-header">
+                                    <h4 class="card-title">Weather Information</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="weather-container">
+                                        <div class="weather-info">
+                                            <h5>Current Weather</h5>
+                                            <p id="weather-description"></p>
+                                            <p id="weather-temperature"></p>
+                                            <p id="weather-humidity"></p>
+                                            <p id="weather-wind"></p>
+                                            <p id="weather-sunrise"></p>
+                                            <p id="weather-sunset"></p>
+                                        </div>
+                                        <div id="weather-forecast" class="weather-forecast"></div>
+                                    </div>
+                                </div>*@
+                        </div>
+                    </div>
+                    @*<div class="col-xl-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div id="weatherChart" style="height: 300px;"></div>
+                                </div>
+                            </div>
+                        </div>*@
+                </div>
+
+
+            </div>
+            <div class="col-xl-6">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="row">
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="card">
+                                    @*<div class="card-header">
+                                            <h4 class="card-title">Donught Chart</h4>
+                                        </div>*@
+                                    <div class="card-body">
+                                        <div id="morris_donught" class="morris_chart_height"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*<div class="col-xl-6 col-sm-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Weather Information</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <p id="weather-description"></p>
+                                            <p id="weather-temperature"></p>
+                                            <p id="weather-humidity"></p>
+                                            <p id="weather-wind"></p>
+                                            <p id="weather-sunrise"></p>
+                                            <p id="weather-sunset"></p>
+                                        </div>
+                                    </div>
+                                </div>*@
+
+                            <div class="col-xl-12 col-sm-12">
+                                <div class="card">
+                                    <figure class="highcharts-figure">
+                                        <div id="container1"></div>
+
+                                    </figure>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xl-12 col-sm-12">
+                                <div class="card">
+
+                                    <div class="card-body">
+
+
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1978.6733842525036!2d79.72951594270864!3d10.72512989108301!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5541006e9ad66b%3A0x607befc559d693f7!2sRajam-Murugan%20&#39;s%20Garden!5e1!3m2!1sen!2sin!4v1740483829384!5m2!1sen!2sin" width="500" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!-- Update Profile Modal -->
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" style=" width: 300%;margin-left:-100%">
+            <div class="modal-header" style="background-color: #a68dd6">
+                <h4 class="card-title">Weather Information</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="card-body">
+                    <div class="weather-container">
+                        <div class="weather-info">
+                            <h5>Current Weather</h5>
+                            <p id="weather-description"></p>
+                            <p id="weather-temperature"></p>
+                            <p id="weather-humidity"></p>
+                            <p id="weather-wind"></p>
+                            <p id="weather-sunrise"></p>
+                            <p id="weather-sunset"></p>
+                        </div>
+                        <div id="weather-forecast" class="weather-forecast"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-sm1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" style=" width: 300%;margin-left:-100%">
+            <div class="modal-header" style="background-color: #a68dd6">
+                <h4 class="card-title">Latest Tamil News</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+
+
+                <div class="card1-body" id="tamil-news">
+                    <p>Loading news...</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-smchat" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" style=" width: 300%; margin-left: -100%; border-radius:0%;">
+            <div class="modal-header" style="background-color: #a68dd6">
+                <h4 class="card-title">Chats</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="containerchat">
+
+                @*<div class="contact" onclick="openChat(this.querySelector('.contact-name').innerText)">
+                        <img src="https://via.placeholder.com/50" alt="Profile">
+                        <div class="contact-info">
+                            <div class="contact-name">John Doe</div>
+                            <div class="contact-message">Hello! How are you?</div>
+                        </div>
+                        <div class="contact-time">10:30 AM</div>
+                    </div>
+                    <div class="contact" onclick="openChat(this.querySelector('.contact-name').innerText)">
+                        <img src="https://via.placeholder.com/50" alt="Profile">
+                        <div class="contact-info">
+                            <div class="contact-name">Jane Smith</div>
+                            <div class="contact-message">See you soon! 😊</div>
+                        </div>
+                        <div class="contact-time">9:45 AM</div>
+                    </div>
+                    <div class="contact" onclick="openChat(this.querySelector('.contact-name').innerText)">
+                        <img src="https://via.placeholder.com/50" alt="Profile">
+                        <div class="contact-info">
+                            <div class="contact-name">Alex Brown</div>
+                            <div class="contact-message">Let's meet at 5 PM.</div>
+                        </div>
+                        <div class="contact-time">8:15 AM</div>
+                    </div>*@
+                @*<div class="headerchat">Contacts</div>*@
+                <div id="contacts-list"></div> <!-- Contacts will be inserted dynamically -->
+            </div>
+            <div class="chat-container">
+                <div class="chat-header">
+                    <button class="back-button">←</button>
+                    <span class="chat-title">Chat</span>
+                </div>
+                <div class="chat-body"></div>
+                <div class="chat-footer">
+                    <input type="text" id="messageInput" placeholder="Type a message...">
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #container1 {
+        height: 400px;
+    }
+
+    .highcharts-figure,
+    .highcharts-data-table table {
+        min-width: 500px;
+        max-width: 800px;
+        margin: 1em auto;
+    }
+
+    .highcharts-data-table table {
+        font-family: Verdana, sans-serif;
+        border-collapse: collapse;
+        border: 1px solid #ebebeb;
+        margin: 10px auto;
+        text-align: center;
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .highcharts-data-table caption {
+        padding: 1em 0;
+        font-size: 1.2em;
+        color: #555;
+    }
+
+    .highcharts-data-table th {
+        font-weight: 600;
+        padding: 0.5em;
+    }
+
+    .highcharts-data-table td,
+    .highcharts-data-table th,
+    .highcharts-data-table caption {
+        padding: 0.5em;
+    }
+
+    .highcharts-data-table thead tr,
+    .highcharts-data-table tr:nth-child(even) {
+        background: #f8f8f8;
+    }
+
+    .highcharts-data-table tr:hover {
+        background: #f1f7ff;
+    }
+
+    .highcharts-description {
+        margin: 0.3rem 10px;
+    }
+
+    #weather-description, #weather-temperature, #weather-humidity, #weather-wind, #weather-sunrise, #weather-sunset {
+        font-size: 16px;
+        margin: 5px 0;
+    }
+
+    .card1 {
+        width: 400px;
+        height: 400px;
+        overflow: hidden;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card1-body {
+        height: 350px; /* Adjust for header */
+        overflow-y: auto;
+        padding: 10px;
+        scrollbar-width: thin; /* Firefox */
+        scrollbar-color: #ccc transparent; /* Firefox */
+    }
+
+        /* Custom scrollbar for Chrome & Edge */
+        .card1-body::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .card1-body::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+            .card1-body::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+
+
+
+</style>
+
+
+@*for chat main screen style*@
+<style>
+
+    /*body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }*/
+
+    .containerchat {
+        width: 100%;
+        max-width: 100%;
+        margin: auto;
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .headerchat {
+        background-color: #075e54;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .contact {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        cursor: pointer;
+        background: white;
+    }
+
+        .contact:hover {
+            background: #f1f1f1;
+        }
+
+        .contact img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 4px solid white;
+        }
+
+    .contact-info {
+        flex: 1;
+    }
+
+    .contact-name {
+        font-size: 16px;
+        font-weight: bold;
+        margin-left: 2%;
+    }
+
+    .contact-message {
+        font-size: 14px;
+        color: gray;
+        margin-left: 2%;
+    }
+
+    .contact-time {
+        font-size: 12px;
+        color: gray;
+    }
+
+    .chat-container {
+        display: none;
+        width: 100%;
+        max-width: 100%;
+        margin: auto;
+        background: #fff;
+        /*border-radius: 10px;*/
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .chat-header {
+        background-color: #075e54;
+        color: white;
+        padding: 15px;
+        font-size: 18px;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .chat-body {
+        padding: 15px;
+        min-height: 400px;
+        max-height: 400px;
+        overflow: auto;
+        background: #ece5dd;
+    }
+
+    .chat-footer {
+        padding: 10px;
+        background: #fff;
+        display: flex;
+        border-top: 1px solid #ddd;
+    }
+
+        .chat-footer input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .chat-footer button {
+            background: #075e54;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-left: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+    .message {
+        /*max-width: 70%;*/
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        font-size: 14px;
+        word-wrap: break-word;
+    }
+
+       
+
+    .sent {
+        background-color: #dcf8c6; /* Light green for sent messages */
+        align-self: flex-end;
+        text-align: right;
+    }
+
+    .received {
+        background-color: #f1f1f1; /* Light gray for received messages */
+        align-self: flex-start;
+        text-align: left;
+    }
+
+    .contact-avatar {
+        position: relative;
+        display: inline-block;
+    }
+
+        .contact-avatar img {
+            width: 50px; /* Adjust as needed */
+            height: 50px;
+            border-radius: 50%;
+        }
+
+    .chat-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background-color: red;
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 4px 6px;
+        border-radius: 50%;
+        min-width: 20px;
+        text-align: center;
+    }
+
+</style>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+
+<style>
+    .weather-container {
+        text-align: center;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .weather-forecast {
+        display: flex;
+        flex-wrap: wrap; /* Ensures items wrap to the next line */
+        justify-content: center; /* Centers forecast items */
+        gap: 10px; /* Adds spacing between items */
+        max-width: 100%;
+    }
+
+    .forecast-day {
+        flex: 1 1 150px; /* Makes items responsive */
+        min-width: 120px; /* Prevents items from shrinking too much */
+        max-width: 180px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        background: #f8f8f8;
+        text-align: center;
+    }
+
+    #daily-proverb {
+        font-style: italic;
+        color: #4CAF50;
+        margin-top: 10px;
+    }
+</style>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+
+<script>
+    
+
+    
+
+    //function loadMessages(contactName) {
+    //    let chatBody = document.querySelector(".chat-body");
+    //    chatBody.innerHTML = ""; // Clear previous messages
+
+    //    let chatHistory = JSON.parse(localStorage.getItem("chatHistory")) || {};
+
+    //    // Get the currently logged-in person from the DOM (assuming #loginuser exists)
+    //    let activeLOG = document.querySelector("#loginuser"); // Selects the first element
+
+    //    let loginperson = activeLOG ? activeLOG.textContent.trim() : "unknown";
+
+    //    // Check if the loginperson exists in the chatHistory
+    //    if (chatHistory[loginperson]) {
+    //        // Filter messages for the given contactName
+    //        let filteredMessages = chatHistory[loginperson].filter(msg => msg.contact === contactName);
+
+    //        // Loop through filtered messages and display them
+    //        filteredMessages.forEach(msg => {
+    //            let messageDiv = document.createElement("div");
+    //            // Apply "sent" or "received" class based on who sent the message
+    //            messageDiv.classList.add("message", msg.contact === loginperson ? "sent" : "received");
+    //            messageDiv.textContent = `${msg.message} (${msg.timestamp})`;
+    //            chatBody.appendChild(messageDiv);
+    //        });
+
+    //        // Scroll to bottom
+    //        chatBody.scrollTop = chatBody.scrollHeight;
+    //    }
+    //}
+    
+
+
+</script>
+
+<script src="~/Scripts/js/vendor/global/global.min.js"></script>
+
+
+<script src="~/Scripts/js/vendor/raphael/raphael.min.js"></script>
+<script src="~/Scripts/js/vendor/morris/morris.min.js"></script>
+<script>
+
+    //function sendMessage() {
+    //    let inputField = document.getElementById("messageInput");
+    //    let messageText = inputField.value.trim();
+    //    if (messageText === "") return;
+
+    //    let chatBody = document.querySelector(".chat-body");
+
+    //    // Create and append the message div
+    //    let messageDiv = document.createElement("div");
+    //    messageDiv.classList.add("message", "sent");
+    //    messageDiv.textContent = messageText;
+    //    chatBody.appendChild(messageDiv);
+    //    let activeContact = document.querySelector(".chat-title"); // Selects the first element
+
+    //    let contactName = activeContact ? activeContact.textContent.trim() : "unknown";
+    //    alert(contactName);
+    //    let activeLOG = document.querySelector("#loginuser"); // Selects the first element
+
+    //    let loginperson = activeLOG ? activeLOG.textContent.trim() : "unknown";
+    //    alert(loginperson);
+    //    saveMessage(contactName, messageText, loginperson);
+    //    inputField.value = "";
+    //    chatBody.scrollTop = chatBody.scrollHeight;
+    //}
+
+    //// Function to save messages to localStorage
+    //function saveMessage(contact, message,loginperson) {
+    //    let chatHistory = JSON.parse(localStorage.getItem("chatHistory")) || {};
+
+    //    if (!chatHistory[loginperson]) {
+    //        chatHistory[loginperson] = []; // Create array for contact if not exists
+    //    }
+    //    chatHistory[loginperson].push({ message: message, contact: contact,timestamp: new Date().toLocaleTimeString() });
+    //    localStorage.setItem("chatHistory", JSON.stringify(chatHistory));
+    //}
+
+    function sendMessage() {
+        let inputField = document.getElementById("messageInput");
+        let messageText = inputField.value.trim();
+        if (messageText === "") return;
+
+        let chatBody = document.querySelector(".chat-body");
+
+        // Create and append the message div
+        let messageDiv = document.createElement("div");
+        messageDiv.classList.add("message", "sent");
+        messageDiv.textContent = messageText;
+        chatBody.appendChild(messageDiv);
+
+        let activeContact = document.querySelector(".chat-title"); // Selects the first element
+        let contactName = activeContact ? activeContact.textContent.trim() : "unknown";
+
+        let activeLOG = document.querySelector("#loginuser"); // Selects the first element
+        let loginperson = activeLOG ? activeLOG.textContent.trim() : "unknown";
+
+        // Send the message to the server (ASP.NET MVC controller)
+        saveMessageToServer(contactName, messageText, loginperson);
+
+        inputField.value = ""; // Clear input field
+        chatBody.scrollTop = chatBody.scrollHeight; // Scroll to bottom
+    }
+
+    // Function to send the message to the server
+    function saveMessageToServer(contact, message, loginperson) {
+        // Prepare data to send via AJAX
+        let messageData = {
+            sender: loginperson,
+            receiver: contact,
+            content: message,
+            timestamp: new Date().toLocaleTimeString()
+        };
+
+        // Use AJAX to call the MVC controller
+        $.ajax({
+            url: '/Home/SendMessage', // Adjust this URL to match your MVC controller's action
+            type: 'POST',
+            data: messageData,
+            success: function (response) {
+                console.log("Message sent successfully:", response);
+            },
+            error: function (xhr, status, error) {
+                console.error("Error sending message:", error);
+            }
+        });
+    }
+
+   
+
+</script>
+@*<script src="~/Scripts/js/plugins-init/morris-init.js"></script>*@
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+<script src="~/Scripts/js/dlabnav-init.js"></script>
+<script src="~/fuctionscripts/Dashboard.js"></script>
+
+
+
+
+
